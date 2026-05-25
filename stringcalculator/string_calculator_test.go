@@ -25,3 +25,33 @@ func TestAdd_twoNumbers(t *testing.T) {
 		t.Errorf(`Add("1,2") = %d, want 3`, got)
 	}
 }
+
+func TestAdd_threeNumbers(t *testing.T) {
+	got, err := Add("1,2,3")
+	if err != nil {
+		t.Fatalf("unexpected error: %v", err)
+	}
+	if got != 6 {
+		t.Errorf(`Add("1,2,3") = %d, want 6`, got)
+	}
+}
+
+func TestAdd_threeNumbersWithNewline(t *testing.T) {
+	got, err := Add("1\n2,3")
+	if err != nil {
+		t.Fatalf("unexpected error: %v", err)
+	}
+	if got != 6 {
+		t.Errorf(`Add("1\n2,3") = %d, want 6`, got)
+	}
+}
+
+func TestAdd_threeNumbersWithCustomDelimeter(t *testing.T) {
+	got, err := Add("//;\n1;2")
+	if err != nil {
+		t.Fatalf("unexpected error: %v", err)
+	}
+	if got != 3 {
+		t.Errorf(`Add("//;\n1;2") = %d, want 3`, got)
+	}
+}
